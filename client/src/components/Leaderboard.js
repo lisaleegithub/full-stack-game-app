@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Form from "./Form";
+// import Form from "./Form";
 
 function Leaderboard() {
   const [players, setPlayers] = useState([]);
@@ -12,23 +12,13 @@ function Leaderboard() {
       })
   }, []);
 
-  const addPlayer = (newPlayer) => {
-    //console.log(newPlayer);
-    //postPlayer(newPlayer);
-    setPlayers((players) => [...players, newPlayer]);
-  }
-
   return (
     <div className="players">
-      <p>Enter your name here</p>
-      <Form addPlayer={addPlayer} />
-
       <h3>Leaderboard</h3>
       <ul> lower score is better
         {players.map((player, i) =>
           <li key={player.id}> {i+1} {" "} {player.name} {player.score}</li>)}
       </ul>
-
     </div>
   );
 }
