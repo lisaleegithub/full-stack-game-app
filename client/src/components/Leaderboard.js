@@ -25,8 +25,8 @@ function Leaderboard() {
 
       <h3>Leaderboard</h3>
       <ul> lower score is better
-        {players.map(player =>
-          <li key={player.id}> {player.name} {player.score}</li>)}
+        {players.map((player, i) =>
+          <li key={player.id}> {i+1} {" "} {player.name} {player.score}</li>)}
       </ul>
 
     </div>
