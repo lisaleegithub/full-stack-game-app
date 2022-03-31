@@ -1,68 +1,46 @@
 import { useState } from "react";
 
 const Form = (props) => {
-    const [student, setStudent] = useState({
-        firstname: "",
-        lastname: ""
+    const [player, setPlayer] = useState({
+        name: "",
     });
 
     //create functions that handle the event of the user typing into the form
     const handleNameChange = (event) => {
-        const firstname = event.target.value;
-        setStudent((student) => ({ ...student, firstname }));
-
-    }
-
-    const handleLastnameChange = (event) => {
-        const lastname = event.target.value;
-        setStudent((student) => ({ ...student, lastname }));
-
+        const name = event.target.value;
+        setPlayer((player) => ({ ...player, name }));
     }
 
     //A function to handle the post request
-    const postStudent = (newStudent) => {
-        return fetch('http://localhost:5005/api/students', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify(newStudent)
-      }).then((response) => {
-          return response.json()
-      }).then((data) => {
-        console.log("From the post ", data);
-        props.addStudent(data);
-      
-    });
+    const postPlayer = (newPlayer) => {
+        return fetch('http://localhost:5001/api/game', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newPlayer)
+        }).then((response) => {
+            return response.json()
+        }).then((data) => {
+            console.log("From the post ", data);
+            props.addPlayer(data);
+        });
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        postStudent(student);
-        
+        postPlayer(player);
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <fieldset>
-                <label>First Name</label>
-                <input
-                    type="text"
-                    id="add-user-name"
-                    placeholder="First Name"
-                    required
-                    value={student.name}
-                    onChange={handleNameChange}
-
-                />
-                <label>Last Name</label>
-                <input
-                    type="text"
-                    id="add-user-lastname"
-                    placeholder="Last Name"
-                    required
-                    value={student.lastname}
-                    onChange={handleLastnameChange}
-                />
-            </fieldset>
+            <label>Name</label>
+            <input
+                type="text"
+                id="add-player-name"
+                placeholder="Enter your name"
+                required
+                value={player.name}
+                onChange={handleNameChange}
+            />
             <button type="submit">Add</button>
         </form>
     );
