@@ -5,41 +5,32 @@ const db = require('../server/db/db-connection.js');
 
 const app = express();
 
-const PORT = 5005;
+const PORT = 5001;
 app.use(cors());
 app.use(express.json());
 
-//creates an endpoint for the route /api
+// creates an endpoint for the route
 app.get('/', (req, res) => {
     res.json({ message: 'Hello from My ExpressJS' });
 });
 
-//create the get request
-app.get('/api/students', cors(), async (req, res) => {
-    // const STUDENTS = [
-
-    //     { id: 1, firstName: 'Lisa', lastName: 'Lee' },
-    //     { id: 2, firstName: 'Eileen', lastName: 'Long' },
-    //     { id: 3, firstName: 'Fariba', lastName: 'Dako' },
-    //     { id: 4, firstName: 'Cristina', lastName: 'Rodriguez' },
-    //     { id: 5, firstName: 'Andrea', lastName: 'Trejo' },
-    // ];
-    // res.json(STUDENTS);
+// GET request
+app.get('/api/game', cors(), async (req, res) => {
     try{
-        const { rows: students } = await db.query('SELECT * FROM students');
-        res.send(students);
+        const { rows: players } = await db.query('SELECT * FROM players ORDER BY score ASC');
+        res.send(players);
     } catch (e){
         return res.status(400).json({e});
     }
 });
 
-//create the POST request
-app.post('/api/students', cors(), async (req, res) => {
-    const newUser = { firstname: req.body.firstname, lastname: req.body.lastname }
-    console.log([newUser.firstname, newUser.lastname]);
+// POST request
+app.post('/api/game', cors(), async (req, res) => {
+    const newPlayer = { name: req.body.name, score: req.body.score }
+    console.log([newPlayer.name, newPlayer.score]);
     const result = await db.query(
-        'INSERT INTO students(firstname, lastname) VALUES($1, $2) RETURNING *',
-        [newUser.firstname, newUser.lastname]
+        'INSERT INTO players(name, score) VALUES($1, $2) RETURNING *',
+        [newPlayer.name, newPlayer.score]
     );
     console.log(result.rows[0]);
     res.json(result.rows[0]);
