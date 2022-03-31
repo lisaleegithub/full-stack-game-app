@@ -1,11 +1,14 @@
 import './App.css';
-import Students from './components/students';
+import Leaderboard from './Components/Leaderboard';
+import Game from './Components/Game';
 
 function App() {
   return (
     <div className="App">
-      Hello from Techtonica
-      <Students />
+      <Game />
+      <br/>
+      <br/>
+      <Leaderboard />
     </div>
   );
 }
