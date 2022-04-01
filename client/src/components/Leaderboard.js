@@ -28,7 +28,7 @@ function Leaderboard() {
 
   return (
     <div className="players">
-      <h3>Leaderboard</h3>
+      <h2>Leaderboard</h2>
       <ul> 
         {players.map((player, i) =>
           <li key={player.id}> Rank {i+1} {" "} {player.name} {formatScore(player.score)}</li>)}

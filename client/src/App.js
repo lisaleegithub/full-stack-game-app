@@ -5,9 +5,8 @@ import Game from './Components/Game';
 function App() {
   return (
     <div className="App">
-      <h2>Number guessing game!</h2>
+      <h1>Number guessing game!</h1>
       <Game />
-      <br/>
       <br/>
       <Leaderboard />
     </div>

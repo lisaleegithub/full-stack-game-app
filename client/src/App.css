@@ -5,6 +5,7 @@
 
 ul {
   list-style-type: none;
+  font-size: 20px;
 }
 
 body {
@@ -14,4 +15,35 @@ body {
 
 * {
   font-family: 'Bellota', cursive;
+  font-weight: bold;
+}
+
+button {
+  margin-left: 20px;
+  font-size: large;
+}
+
+input
+{
+    margin-left: 20px;
+    background: white;
+    border: grey solid;
+    outline: none;
+    width: 200px;
+    padding: 10px;
+    font-size: large;
+}
+
+label {
+  font-size: large;
+}
+
+p {
+  font-size: large;
+}
+
+.summary, .players {
+  padding: 10px;
+  background: rgba(136, 119, 179, 0.3);
+  width: 650px;
 }
