@@ -12,12 +12,22 @@ function Leaderboard() {
       })
   }, []);
 
+
+  // 100 * 10 = max score = 1000
+  // guess count is score so less guess count means higher score
+  // if guessed right away, 1000
+  // each guess is -10 pts
+  function formatScore (score) {
+    let maxScore = 1000;
+    return maxScore - ((score - 1) * 10);
+  }
+
   return (
     <div className="players">
       <h3>Leaderboard</h3>
-      <ul> lower score is better
+      <ul> 
         {players.map((player, i) =>
-          <li key={player.id}> {i+1} {" "} {player.name} {player.score}</li>)}
+          <li key={player.id}> Rank {i+1} {" "} {player.name} {formatScore(player.score)}</li>)}
       </ul>
     </div>
   );
