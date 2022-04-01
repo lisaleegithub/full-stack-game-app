@@ -14,13 +14,16 @@ body {
 }
 
 * {
-  font-family: 'Bellota', cursive;
+  font-family: 'Varela Round', sans-serif;
   font-weight: bold;
 }
 
 button {
   margin-left: 20px;
   font-size: large;
+  padding: 10px;
+  background-color: lavender;
+
 }
 
 input
@@ -46,4 +49,8 @@ p {
   padding: 10px;
   background: rgba(136, 119, 179, 0.3);
   width: 650px;
+}
+
+.message {
+  color: purple;
 }
