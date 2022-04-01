@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 // GET request
 app.get('/api/game', cors(), async (req, res) => {
     try{
-        const { rows: players } = await db.query('SELECT * FROM players ORDER BY score ASC');
+        const { rows: players } = await db.query('SELECT * FROM players WHERE score IS NOT NULL ORDER BY score ASC');
         res.send(players);
     } catch (e){
         return res.status(400).json({e});
