@@ -13,25 +13,25 @@ function Leaderboard() {
   }, []);
 
 
-  // 100 * 10 = max score = 1000
-  // guess count is score so less guess count means higher score
-  // if guessed right away, 1000
-  // each guess is -10 pts
-  function formatScore (score) {
-    let maxScore = 1000;
-    if (score === 1) {
-      return maxScore;
-    } else {
-    return maxScore - (score * 10);
-    }
-  }
+  // // 100 * 10 = max score = 1000
+  // // guess count is score so less guess count means higher score
+  // // if guessed right away, 1000
+  // // each guess is -10 pts
+  // function formatScore (score) {
+  //   let maxScore = 1000;
+  //   if (score === 1) {
+  //     return maxScore;
+  //   } else {
+  //   return maxScore - (score * 10);
+  //   }
+  // }
 
   return (
     <div className="players">
       <h2>Leaderboard</h2>
       <ul> 
         {players.map((player, i) =>
-          <li key={player.id}> Rank {i+1} {" "} {player.name} {formatScore(player.score)}</li>)}
+          <li key={player.id}> Rank {i+1} {" "} {player.name} {player.score}</li>)}
       </ul>
     </div>
   );
