@@ -64,8 +64,9 @@ const Game = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("this is playerId", playerId);
+        playGame();
         setPlayer(player);
-        updateScore({ "score": guessCount });
+        updateScore({ "score": guessCount + 1});
     };
 
     const playGame = () => {
@@ -107,7 +108,8 @@ const Game = () => {
                 <br />
                 <label>Your Guess</label>
                 <input value={guess} type="number" required onChange={e => setGuess(e.target.value)} placeholder="Enter your guess" />
-                <button type="submit" onClick={playGame}>Submit Guess</button>
+                {/* <button type="submit" onClick={playGame}>Submit Guess</button> */}
+                <button type="submit">Submit Guess</button>
             </form>
             <br />
 

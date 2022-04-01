@@ -19,7 +19,11 @@ function Leaderboard() {
   // each guess is -10 pts
   function formatScore (score) {
     let maxScore = 1000;
-    return maxScore - ((score - 1) * 10);
+    if (score === 1) {
+      return maxScore;
+    } else {
+    return maxScore - (score * 10);
+    }
   }
 
   return (
