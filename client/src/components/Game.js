@@ -65,7 +65,7 @@ const Game = () => {
         e.preventDefault();
         console.log("this is playerId", playerId);
         setPlayer(player);
-        updateScore({"score":guessCount});
+        updateScore({ "score": guessCount });
     };
 
     const playGame = () => {
@@ -91,7 +91,7 @@ const Game = () => {
     return (
         <div>
             <form onSubmit={handleAddPlayer}>
-                <h3>Enter Player Name</h3>
+                <h3>Add Player and Start Guessing</h3>
                 <label>Name</label>
                 <input
                     type="text"
@@ -104,15 +104,18 @@ const Game = () => {
             </form>
 
             <form onSubmit={handleSubmit}>
-                <br/>
+                <br />
                 <label>Your Guess</label>
                 <input value={guess} type="number" required onChange={e => setGuess(e.target.value)} placeholder="Enter your guess" />
                 <button type="submit" onClick={playGame}>Submit Guess</button>
             </form>
-            <br/>
-            <p>{message}</p>
-            <p>number of guesses: {guessCount}</p>
-            <p>your guesses: {guessList.join(', ')}</p>
+            <br />
+
+            <div className="summary">
+                <p>{message}</p>
+                <p>number of guesses: {guessCount}</p>
+                <p>your guesses: {guessList.join(', ')}</p>
+            </div>
         </div>
     )
 }
