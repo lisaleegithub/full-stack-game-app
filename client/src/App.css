@@ -1,7 +1,17 @@
 .App {
   margin-left: 20px;
+  
 }
 
 ul {
   list-style-type: none;
+}
+
+body {
+  background-image: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v1013-p-0024d-01-ksi8bb2q.jpg?w=1200&h=1200&dpr=1&fit=clip&crop=default&fm=jpg&q=75&vib=3&con=3&usm=15&cs=srgb&bg=F4F4F3&ixlib=js-2.2.1&s=5e9bc30f68a80a8cc44da9a9ed09e79c");  
+  background-size: cover;
+}
+
+* {
+  font-family: 'Bellota', cursive;
 }
