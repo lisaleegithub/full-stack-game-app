@@ -30,6 +30,9 @@ const Game = () => {
             return response.json()
         }).then((data) => {
             console.log("From the post ", data);
+        }).catch((error) => {
+            console.error('Error:', error);
+            // setMessage(`⚠️Player name ${player.name} is already on the leaderboard. Please use a different name!`)
         });
     }
 
@@ -37,6 +40,7 @@ const Game = () => {
     const handleAddPlayer = (e) => {
         e.preventDefault();
         addPlayer();
+        setMessage("Player added. Start Guessing!")
     }
 
     // add new player
@@ -53,10 +57,9 @@ const Game = () => {
             .then(data => {
                 console.log('Success:', data);
                 // if success, do the following
-                setPlayerId(data.id);
+                 setPlayerId(data.id)
                 // console.log("print playerid", data.id);
-            })
-            .catch((error) => {
+            }).catch((error) => {
                 console.error('Error:', error);
             });
     }
@@ -64,9 +67,9 @@ const Game = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("this is playerId", playerId);
-        playGame();
         setPlayer(player);
-        updateScore({ "score": guessCount + 1});
+        updateScore({ "score": guessCount + 1 });
+        playGame();
     };
 
     const playGame = () => {
@@ -92,12 +95,13 @@ const Game = () => {
     return (
         <div>
             <form onSubmit={handleAddPlayer}>
-                <h3>Add Player and Start Guessing</h3>
+                <h2>Add Player and Start Guessing</h2>
                 <label>Name</label>
                 <input
                     type="text"
                     id="add-player-name"
                     required
+                    placeholder="Enter player name"
                     value={player.name}
                     onChange={handleNameChange}
                 />
@@ -114,6 +118,7 @@ const Game = () => {
             <br />
 
             <div className="summary">
+                <p>Player ID: {playerId}</p>
                 <p>{message}</p>
                 <p>number of guesses: {guessCount}</p>
                 <p>your guesses: {guessList.join(', ')}</p>
