@@ -29,10 +29,20 @@ function Leaderboard() {
   return (
     <div className="players">
       <h2>Leaderboard</h2>
-      <ul> 
-        {players.map((player, i) =>
-          <li key={player.id}> Rank {i+1} {" "} {player.name} {player.score}</li>)}
-      </ul>
+      <table>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Score</th>
+        </tr> 
+        {players.map((player, i) => (
+          <tr key={player.id}> 
+          <td>{i+1}</td>
+          <td>{player.name}</td>
+          <td>{player.score}</td>
+          </tr>
+          ))}
+      </table>
     </div>
   );
 }
