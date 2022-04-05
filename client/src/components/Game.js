@@ -13,6 +13,7 @@ const Game = () => {
         name: "",
     });
     const [playerId, setPlayerId] = useState(0);
+    const [errorMsg, setErrorMsg] = useState("");
 
     // create function that handles name change
     const handleNameChange = (event) => {
@@ -32,6 +33,7 @@ const Game = () => {
             console.log("From the post ", data);
         }).catch((error) => {
             console.error('Error:', error);
+            // setErrorMsg("This is an error message.")
             // setMessage(`⚠️Player name ${player.name} is already on the leaderboard. Please use a different name!`)
         });
     }
@@ -40,7 +42,6 @@ const Game = () => {
     const handleAddPlayer = (e) => {
         e.preventDefault();
         addPlayer();
-        setMessage("Player added. Start Guessing!")
     }
 
     // add new player
@@ -55,12 +56,15 @@ const Game = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
+                // console.log('Success:', data);
                 // if success, do the following
                  setPlayerId(data.id)
+                 setMessage("Player added. Start Guessing!");
+                 setErrorMsg("");
                 // console.log("print playerid", data.id);
             }).catch((error) => {
                 console.error('Error:', error);
+                setErrorMsg("This is an error message.")
             });
     }
 
@@ -71,6 +75,18 @@ const Game = () => {
         updateScore({ "score": guessCount + 1 });
         playGame();
     };
+
+    // function formatScore (score) {
+    //     let maxScore = 1000;
+    //     if (score === 0) {
+    //         return "no score";
+    //     }
+    //     if (score === 1) {
+    //       return maxScore;
+    //     } else {
+    //     return maxScore - (score * 10);
+    //     }
+    //   }
 
     const playGame = () => {
         const userGuess = guess;
@@ -119,6 +135,7 @@ const Game = () => {
 
             <div className="summary">
                 <p>Player ID: {playerId}</p>
+                <p>{errorMsg}</p>
                 <p>{message}</p>
                 <p>number of guesses: {guessCount}</p>
                 <p>your guesses: {guessList.join(', ')}</p>
@@ -127,4 +144,3 @@ const Game = () => {
     )
 }
 export default Game;
-
